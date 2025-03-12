@@ -1,0 +1,132 @@
+CHIP Decoder5430162 {
+    IN A,B,C,D;
+    OUT a,b,c,d,e,f,g;
+
+    PARTS:
+    Not(in=A, out=notA);
+    Not(in=B, out=notB);
+    Not(in=C, out=notC);
+    Not(in=D, out=notD);
+
+
+    //a
+    And(a=notA, b=notC, out=notAnotC);
+    And(a=B, b=C, out=BC);
+    And(a=C, b=notD, out=CnotD);
+
+    Or(a=notAnotC, b=BC, out=notAnotCOrBC);
+    Or(a=notAnotCOrBC, b=CnotD, out=a);
+
+
+    //b
+    And(a=A, b=notB, out=term1);
+
+    And(a=B, b=notD, out=term2);
+
+    And(a=notA, b=notB, out=notAnotB);
+    And(a=notC, b=notD, out=notCnotD);
+    And(a=notAnotB, b=notCnotD, out=term3);
+
+    And(a=notA, b=B, out=notAB);
+    And(a=notC, b=D, out=notCD);
+    And(a=notAB, b=notCD, out=term4);
+
+    And(a=A, b=B, out=AB);
+    And(a=AB, b=C, out=term5);
+
+    Or(a=term1, b=term2, out=term12);
+    Or(a=term3, b=term4, out=term34);
+    Or(a=term12, b=term34, out=term1234);
+    Or(a=term1234, b=term5, out=b);
+
+
+    //c    
+    And(a=A, b=B, out=AandB);
+    And(a=A, b=C, out=AandC);
+    And(a=notB, b=notD, out=notBandnotD);
+    And(a=C, b=notD, out=CandnotD);
+    
+    Or(a=AandB, b=AandC, out=g1);
+    Or(a=notBandnotD, b=CandnotD, out=g2);
+    
+    Or(a=g1, b=g2, out=c);
+
+
+    //d
+    And (a=A, b=notB, out=final1);
+
+    And (a=notA, b=B, out=BnotA);
+    And (a=BnotA, b=notC, out=final2);
+
+    And (a=notA, b=notB, out=notAnotB); 
+    And (a=notAnotB, b=C, out=final3); 
+
+    And (a=B, b=C, out=BC); 
+    And (a=BC, b=notD, out=final4); 
+
+    And (a=A, b=B, out=AB);
+    And (a=AB, b=D, out=final5); 
+
+    Or (a=final1, b=final2, out=final12);
+    Or (a=final3, b=final4, out=final34);
+    Or (a=final12, b=final34, out=final1234);
+    Or (a=final1234, b=final5, out=d);
+
+
+    //e
+    And(a=A, b=notB, out=s1);
+
+    And(a=notA, b=B, out=s2);
+
+    And(a=notA, b=notC, out=s3a);
+    And(a=s3a, b=notD, out=s3);
+
+    And(a=notA, b=C, out=s4a);
+    And(a=s4a, b=D, out=s4);
+
+    And(a=B, b=notC, out=s5a);
+    And(a=s5a, b=D, out=s5);
+
+    Or(a=s1, b=s2, out=out1);
+    Or(a=out1, b=s3, out=out2);
+    Or(a=out2, b=s4, out=out3);
+    Or(a=out3, b=s5, out=e);
+
+
+    //f
+    And(a=notB, b=notD, out=nBnD);
+
+    And(a=notA, b=notB, out=nAnB);
+
+    And(a=notA, b=notC, out=nAnC);
+    And(a=nAnC, b=notD, out=nAnCnD);
+
+    And(a=A, b=notC, out=AnC);
+    And(a=AnC, b=D, out=AnCD);
+
+    Or(a=nBnD, b=nAnB, out=nBnDornAnB);
+    Or(a=nAnCnD, b=AnCD, out=nAnCnDorAnCD);
+    Or(a=nBnDornAnB, b=nAnCnDorAnCD, out=f);
+    
+
+    //g
+    And(a=A,b=notC,out=final1);
+   
+    And(a=notA,b=notB,out=and1);
+    And(a=and1,b=notD,out=final2);
+   
+    And(a=B,b=notC,out=and2);
+    And(a=and2,b=D,out=final3);
+
+    And(a=B,b=C,out=and3);
+    And(a=and3,b=notD,out=final4);
+
+    And(a=C,b=D,out=and4);
+    And(a=and4,b=notB,out=final5);
+
+    Or(a=final1,b=final2,out=or1);
+    Or(a=or1,b=final3,out=or2);
+    Or(a=or2,b=final4,out=or3);
+    Or(a=or3,b=final5,out=g);
+    }
+    
