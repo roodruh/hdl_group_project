@@ -57,14 +57,8 @@ CHIP Decoder201891899 {
 
     And (a=notA, b=B, out=BnotA);
     And (a=BnotA, b=notC, out=final2);
-
-    And (a=notA, b=notB, out=notAnotB); 
     And (a=notAnotB, b=C, out=final3); 
-
-    And (a=B, b=C, out=BC); 
     And (a=BC, b=notD, out=final4); 
-
-    And (a=A, b=B, out=AB);
     And (a=AB, b=D, out=final5); 
 
     Or (a=final1, b=final2, out=final12);
@@ -110,19 +104,19 @@ CHIP Decoder201891899 {
     
 
     //g
-    And(a=A,b=notC,out=final1);
+    And(a=A,b=notC,out=finalpart1);
    
     And(a=notA,b=notB,out=and1);
-    And(a=and1,b=notD,out=final2);
+    And(a=and1,b=notD,out=finalpart2);
    
     And(a=B,b=notC,out=and2);
-    And(a=and2,b=D,out=final3);
+    And(a=and2,b=D,out=finalpart3);
 
     And(a=B,b=C,out=and3);
-    And(a=and3,b=notD,out=final4);
+    And(a=and3,b=notD,out=finalpart4);
 
     And(a=C,b=D,out=and4);
-    And(a=and4,b=notB,out=final5);
+    And(a=and4,b=notB,out=finalpart5);
 
     Or(a=final1,b=final2,out=or1);
     Or(a=or1,b=final3,out=or2);
