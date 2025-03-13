@@ -68,11 +68,14 @@ CHIP Decoder201891899 {
     //d
     And (a=A, b=notB, out=final1);
 
-    And(a=B, b=B, out=BC);
     And (a=notA, b=B, out=BnotA);
     And (a=BnotA, b=notC, out=final2);
+ 
     And (a=notAnotB, b=C, out=final3); 
+
+    And (a=B, b=C, out=BC); 
     And (a=BC, b=notD, out=final4); 
+
     And (a=AB, b=D, out=final5); 
 
     Or (a=final1, b=final2, out=final12);
