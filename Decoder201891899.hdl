@@ -102,26 +102,26 @@ CHIP Decoder201891899 {
 
 
     //f
-    And(a=notB, b=notD, out=nBnD);
+    And(a=notC, b=notD, out=notCandnotD);
+    And(a=notA, b=notCandnotD, out=notAandnotCandnotD);
 
-    And(a=notA, b=notB, out=nAnB);
+    And(a=C, b=D, out=CandD);
+    And(a=notA, b=CandD, out=notAandCandD);
+    
+    And(a=notC, b=D, out=notCandD);
+    And(a=A, b=notCandD, out=AandnotCandD);
 
-    And(a=notA, b=notC, out=nAnC);
-    And(a=nAnC, b=notD, out=nAnCnD);
-
-    And(a=A, b=notC, out=AnC);
-    And(a=AnC, b=D, out=AnCD);
-
-    Or(a=nBnD, b=nAnB, out=nBnDornAnB);
-    Or(a=nAnCnD, b=AnCD, out=nAnCnDorAnCD);
-    Or(a=nBnDornAnB, b=nAnCnDorAnCD, out=f);
+    Or(a=notAandnotCandnotD, b=notBandnotC, out=for1);
+    Or(a=notAandCandD, b=AandnotCandD, out=for2);
+    Or(a=for1, b=for2, out=for12);
+    Or(a=for12, b=notBandnotD, out=f);
     
 
     //g
     And(a=A,b=notC,out=finalpart1);
    
-    And(a=notA,b=notB,out=and1);
-    And(a=and1,b=notD,out=finalpart2);
+    And(a=notA,b=notB,out=notAandnotB);
+    And(a=notAandnotB,b=notD,out=finalpart2);
    
     And(a=B,b=notC,out=and2);
     And(a=and2,b=D,out=finalpart3);
@@ -132,9 +132,9 @@ CHIP Decoder201891899 {
     And(a=C,b=D,out=and4);
     And(a=and4,b=notB,out=finalpart5);
 
-    Or(a=final1,b=final2,out=or1);
-    Or(a=or1,b=final3,out=or2);
-    Or(a=or2,b=final4,out=or3);
-    Or(a=or3,b=final5,out=g);
+    Or(a=finalpart1,b=finalpart2,out=finalpart12);
+    Or(a=finalpart12,b=finalpart3,out=finalpart123);
+    Or(a=finalpart123,b=finalpart4,out=finalpart1234);
+    Or(a=finalpart1234,b=finalpart5,out=g);
     }
     
