@@ -10,23 +10,27 @@ CHIP Decoder201891899 {
 
 
     //a
-    And(a=A, b=notD, out=AnotD);
-    And(a=notA, b=C, out=notAC);
-    And(a=notB, b=notD, out=notBnotD);
-    And(a=B, b=C, out=BC);
+    And(a=notA, b=C, out=notAandC);
+
+    And(a=A, b=notD, out=AandnotD);
+
+    And(a=notB, b=notD, out=notBandnotD);
+
+    And(a=B, b=C, out=BandC);
     
-    And(a=notB, b=notC, out=notBnotC);
-    And(a=A, b=notBnotC, out=AnotBnotC);
+    And(a=notB, b=notC, out=notBandnotC);
+    And(a=A, b=notBandnotC, out=AandnotBandnotC);
 
-    And(a=B, b=D, out=BD);
-    And(a=notA, b=BD, out=notABD);
+    And(a=B, b=D, out=BandD);
+    And(a=notA, b=BandD, out=notAandBandD);
 
-    Or(a=AnotD, b=notAC, out=a1);
-    Or(a=notBnotD, b=BC, out=a2);
-    Or(a=notBnotC, b=AnotBnotC, out=a3);
+    Or(a=notAandC, b=AandnotD, out=a1);
+    Or(a=notBandnotD, b=BandC, out=a2);
+    Or(a=AandnotBandnotC, b=notAandBandD, out=a3);
 
     Or(a=a1, b=a2, out=a12);
     Or(a=a12, b=a3, out=a);
+    
 
     //b
     And(a=A, b=notB, out=term1);
