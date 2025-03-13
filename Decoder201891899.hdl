@@ -30,7 +30,7 @@ CHIP Decoder201891899 {
 
     Or(a=a1, b=a2, out=a12);
     Or(a=a12, b=a3, out=a);
-    
+
 
     //b
     And(a=A, b=notB, out=term1);
@@ -57,7 +57,6 @@ CHIP Decoder201891899 {
     //c    
     And(a=A, b=B, out=AandB);
     And(a=A, b=C, out=AandC);
-    And(a=notB, b=notD, out=notBandnotD);
     And(a=C, b=notD, out=CandnotD);
     
     Or(a=AandB, b=AandC, out=g1);
